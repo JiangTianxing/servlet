@@ -1,4 +1,4 @@
-package org.redrock.template.entity;
+package org.redrock.template.data.entity;
 
 import lombok.Getter;
 import lombok.Setter;

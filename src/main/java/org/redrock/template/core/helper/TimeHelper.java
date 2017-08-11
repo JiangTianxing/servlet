@@ -1,4 +1,4 @@
-package org.redrock.template.helper;
+package org.redrock.template.core.helper;
 
 /**
  * 模板可能用到的时间函数类库

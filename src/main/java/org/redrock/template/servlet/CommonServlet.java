@@ -4,7 +4,8 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
-import org.redrock.template.core.Container;
+import org.redrock.template.core.util.Container;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
-
 /**
  * 整合freemarker视图引擎的父类
  */
@@ -37,6 +37,7 @@ public class CommonServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         configuration = new Configuration();
+        template_data = new ThreadLocal<>();
         //设置模板文件夹
         configuration.setServletContextForTemplateLoading(getServletContext(), "/WEB-INF/views");
         //设置字符编码
@@ -54,7 +55,6 @@ public class CommonServlet extends HttpServlet {
      */
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        template_data = new ThreadLocal<>();
         template_data.set(new HashMap());
         //父类service方法中会根据Http请求去执行相应的Http请求处理方法（doPost 或 doGet）
         super.service(req, resp);

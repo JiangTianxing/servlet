@@ -1,4 +1,6 @@
-package org.redrock.template.filter;
+package org.redrock.template.core.filter;
+
+import org.redrock.template.core.util.RequestUtil;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -23,8 +25,10 @@ public class LoginFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
         if (session.getAttribute("admin") == null) {
-            request.getContextPath();
+            String context = RequestUtil.getContextPath(request);
+            System.out.println(context);
         }
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

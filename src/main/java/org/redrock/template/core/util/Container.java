@@ -1,4 +1,4 @@
-package org.redrock.template.core;
+package org.redrock.template.core.util;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,6 @@ import java.util.Map;
  * 维护了一个 Map 实现对多个对象进行 饿汉式单例加载
  */
 public class Container {
-
     /**
      * 容器
      */
@@ -32,6 +31,14 @@ public class Container {
         return (T) containers.get(clazz.getName());
     }
 
+    /**
+     * 向容器中放入实例
+     * @param name
+     * @param object
+     */
+    public static void addInstance(String name, Object object) {
+        containers.put(name, object);
+    }
     /**
      * 通过类获取类的实例
      * 反射 泛型
